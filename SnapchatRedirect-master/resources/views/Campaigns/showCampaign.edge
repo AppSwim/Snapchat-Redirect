@@ -1,0 +1,64 @@
+@layout('Components.master')
+
+@section('content')
+    @include('Components.header')
+    <div class="ui container" style="margin-top: 10px;">
+        <div class="ui padded segment">
+            <h2 class="ui header">
+                {{ campaign.name }} 
+            </h2>
+            <div class="ui grid">
+                <div class="six wide column">
+                    <div class="ui large relaxed list">
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Name</div>
+                                {{ campaign.name }}
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Default Link</div>
+                                {{ campaign.default_link }}
+                            </div>
+                        </div>
+                        @if(campaign.redirect_type == 'SPLIT')
+                          <div class="item">
+                                <div class="content">
+                                    <div class="header">iOS Link</div>
+                                    {{ campaign.ios_link }}
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="content">
+                                    <div class="header">Android Link</div>
+                                    {{ campaign.android_link }}
+                                </div>
+                            </div>
+                        @endif
+                        <div class="item"> 
+                            <div class="content">
+                                <div class="header">Shortlink</div>
+                                {{ campaign.redirect.redirect_code }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ten wide column">
+                    <div class="ui form">
+                        <h3 class="ui sub header">Attachment Link</h3>
+                        <input type="text" value="http://apps.appswim.com/c/{{ campaign.redirect.redirect_code }}/no-redirect" readonly>
+                    </div>
+                    <div class="ui divider"></div>
+                    <form action="{{ route('CampaignController.showEditCampaign', { id: campaign.id }) }}" method="get">
+                        <button class="ui teal fluid button">Edit campaign</button>
+                    </form>
+                    <form action="{{ route('CampaignController.deleteCampaign', { id: campaign.id }) }}" method="post" style="margin-top: 10px;">
+                        <button class="ui red fluid button">Delete campaign</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection

@@ -1,0 +1,27 @@
+@layout('Components.master')
+
+@section('head')
+    {{ css('redirect_style') }}
+@endsection
+
+@section('content')
+<div class="ui container" style="margin-top: 30px;">
+    <div class="ui middle aligned center grid">
+        <div class="column">
+            <h1>Redirecting</h1>
+            <div hidden id="noredirect">
+                <div class="ui red message">No redirection cookie is present.</div>
+                <div class="ui orange message">You can now Attach this link to Snap.</div>
+                <button id="remove-noredirect" class="ui fluid button large orange">Remove no redirect cookie</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+<script>
+    let redirect_url = "{{ redirect_url }}"
+</script>
+{{ script('redirect') }}
+@endsection

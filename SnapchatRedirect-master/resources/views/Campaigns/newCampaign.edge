@@ -1,0 +1,79 @@
+@layout('Components.master')
+
+@section('content')
+    @include('Components.header')
+    <div class="ui container" style="margin-top: 10px;">
+        <div class="ui padded segment">
+            <h2 class="ui header">
+                Create new campaign
+            </h2>
+            <form action="{{ route('CampaignController.createCampaign') }}" method="POST" class="ui form">
+                <div class="ui error message"></div>
+                <div class="field">
+                    <label>Name</label>
+                    <input name="name" placeholder="Your wonderful campaign" type="text">
+                </div>
+                <div class="field">
+                    <label>Default link</label>
+                    <input name="default_link" placeholder="http://default_link.com" type="text">
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui segment">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input name="redirect_type" value="SPLIT" tabindex="0" class="hidden" type="checkbox">
+                            <label>Redirect based on browser client</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Link for iOS devices</label>
+                        <input name="ios_link" disabled placeholder="http://ios_link.com" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Link for Android devices</label>
+                        <input name="android_link" disabled placeholder="http://android_link.com" type="text">
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="field">
+                    <label>Shortlink</label>
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            http://apps.appswim.com/c/
+                        </div>
+                        <input name="redirect_code" placeholder="XXXXXXX" type="text">
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <button type="submit" class="ui green fluid button">Create campaign</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            $('.ui.checkbox').checkbox()
+            $("input[type='checkbox']").change(function() {
+                if (this.checked) {
+                    $("input[name='ios_link']").prop('disabled', false)
+                    $("input[name='android_link']").prop('disabled', false)
+                } else {
+                    $("input[name='ios_link']").prop('disabled', true)
+                    $("input[name='android_link']").prop('disabled', true)
+                }
+            })
+
+            $('.ui.form').form({
+                fields: {
+                    name: 'empty',
+                    default_link: ['empty', 'url'],
+                    ios_link: 'url',
+                    android_link: 'url',
+                    redirect_code: ['empty', 'doesntContain[ ]', 'minLength[4]']
+                }
+            })
+        }
+    </script>
+@endsection

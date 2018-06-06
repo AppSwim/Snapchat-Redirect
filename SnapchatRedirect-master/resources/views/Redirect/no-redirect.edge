@@ -1,0 +1,15 @@
+@layout('Components.master')
+
+@section('head')
+    {{ css('redirect_style') }}
+@endsection
+
+@section('content')
+
+<script>
+    window.onload = () => {
+        Cookies.set('no-redirect', 'true')
+        location.replace('./')
+    }
+</script>
+@endsection

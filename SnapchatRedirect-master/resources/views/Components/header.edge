@@ -1,0 +1,15 @@
+<div class="ui container" style="margin-top: 30px;">
+    <div class="ui pointing menu">
+        <div class="header item">
+            Snapchat Redirect
+        </div>
+        <a href="/campaigns" class="active item">Campaigns</a>
+        <div class="right menu">
+            <div class="item">
+                <form method="GET" action="{{ route('AuthenticationController.logout') }}">
+                    <button type="submit" class="ui red button">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
