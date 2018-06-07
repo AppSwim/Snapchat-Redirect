@@ -12,6 +12,7 @@ class CampaignSchema extends Schema {
       table.string('ios_link', 255)
       table.string('android_link', 255)
       table.string('default_link', 255).notNullable()
+      table.string('logo_url', 255).notNullable()
 
       // 'NORMAL' or 'SPLIT' redirects
       table.string('redirect_type').notNullable().defaultsTo('NORMAL')

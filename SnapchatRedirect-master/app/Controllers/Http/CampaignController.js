@@ -9,7 +9,7 @@ class CampaignController {
     // /campaigns
     // { ios_link, android_link, default_link, redirect_type, name, redirect_code }
     async createCampaign({ request, auth, params, view, response }) {
-        var campaignData = request.only(['name', 'default_link'])
+        var campaignData = request.only(['name', 'default_link', 'logo_url'])
         const redirectData = request.only(['redirect_code'])
 
         if (request.only(['redirect_type']).redirect_type == 'SPLIT') {
@@ -39,7 +39,7 @@ class CampaignController {
     // /campaigns/:id/edit
     // { ios_link, android_link, default_link, redirect_type, name, redirect_code }
     async updateCampaign({ request, auth, params, view, response }) {
-        var campaignData = request.only(['name', 'default_link'])
+        var campaignData = request.only(['name', 'default_link', 'logo_url'])
 
         if (request.only(['redirect_type']).redirect_type == 'SPLIT') {
             campaignData = {

@@ -1,0 +1,41 @@
+.landing
+{
+	text-align: center;
+	margin-top: 24%;
+}
+
+.landing-logo {
+  	margin-bottom: 35px;
+}
+.landing-logo-image
+{
+	height: 200px;
+
+}
+.store-logo-ios,.store-logo-android
+{
+	width: 200px;
+	height: 60px;
+	vertical-align: middle;
+}
+.store-badge
+{
+	display: inline-block;
+    border: 0;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+.store-badge-2
+{
+	display: inline-block;
+    border: 0;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+.landing-text
+{
+	font-family: 'Open Sans', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 90px;
+}

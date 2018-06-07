@@ -14,8 +14,7 @@ class RedirectController {
             const campaign = await redirect.campaign().fetch()
 
             const osName = UAParser(request.header('User-Agent')).os.name
-            let redirect_url = ""
-
+            let redirect_url = "", logo_url = "",  default_redirect_url = "", app_name = ""
             if (campaign.redirect_type == 'SPLIT') {
                 if (osName === "iOS") {
                     redirect_url = campaign.ios_link 
@@ -27,9 +26,11 @@ class RedirectController {
             } else {
                 redirect_url = campaign.default_link
             }
-
+            default_redirect_url = campaign.default_link
+            logo_url = campaign.logo_url
+            app_name = campaign.name
             let obj = {
-                redirect_url,
+                redirect_url, default_redirect_url, logo_url, app_name
             }
 
             view.share(obj)
@@ -44,8 +45,7 @@ class RedirectController {
     async noRedirectCookie({ view }) {
         return view.render('Redirect.no-redirect')
     }
-
-
+  
     // POST
     // /campaigns/:id/redirect
     // { redirect_code }

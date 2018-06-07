@@ -17,6 +17,10 @@
                     <label>Default link</label>
                     <input name="default_link" placeholder="http://default_link.com" type="text">
                 </div>
+                <div class="field">
+                    <label>Logo url</label>
+                    <input name="logo_url" placeholder="http://default_link.com/logo.sgv" type="text">
+                </div>
                 <div class="ui divider"></div>
                 <div class="ui segment">
                     <div class="field">
@@ -69,6 +73,7 @@
                 fields: {
                     name: 'empty',
                     default_link: ['empty', 'url'],
+                    logo_url: ['empty', 'url'],
                     ios_link: 'url',
                     android_link: 'url',
                     redirect_code: ['empty', 'doesntContain[ ]', 'minLength[4]']
