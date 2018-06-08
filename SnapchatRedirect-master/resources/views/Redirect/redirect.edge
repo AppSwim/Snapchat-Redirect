@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>{{ app_name }}</title>
-   
+    <link rel="shortcut icon" type="image/png" href="{{ logo_url }}"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.10/dist/semantic.min.css">
     {{ css('redirect_style') }}
     {{ css('redirect_style') }}
@@ -17,14 +17,14 @@
                     <img class="landing-logo-image" src="{{ logo_url }}" alt="">
                 </div>
                 <div class="landing-text">
-                Plato: Games, Chat & Friends
+                {{ app_name }}
                 </div>
                 <div class="landing-store-logo">
                     <a href="{{ default_redirect_url }}" class="store-badge"><img class="store-logo-ios" src="/app-store-badge.svg" alt=""> </a>
                     <a href="{{ default_redirect_url }}" class="store-badge-2"><img class="store-logo-android" src="/google-play-badge.png" alt=""> </a>
                 </div>
             </div>
-            <div hidden id="noredirect">
+            <div hidden>
                 <div class="ui red message">No redirection cookie is present.</div>
                 <div class="ui orange message">You can now Attach this link to Snap.</div>
                 <button id="remove-noredirect" class="ui fluid button large orange">Remove no redirect cookie</button>

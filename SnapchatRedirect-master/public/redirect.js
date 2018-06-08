@@ -5,9 +5,7 @@ window.onload = () => {
 
     if (shouldRedirect) {
         executeRedirect()
-    } else {
-        $('#noredirect').show()
-    }
+    } 
 
     $('#remove-noredirect').click(function () {
         Cookies.remove('no-redirect')
