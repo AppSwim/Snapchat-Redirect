@@ -1,0 +1,45 @@
+@layout('Components.master')
+
+@section('content')
+    @include('Components.header')
+    <div class="ui container" style="margin-top: 10px;">
+        <div class="ui padded segment">
+            <h2 class="ui header">
+                {{ campaign.name }}
+            </h2>
+            <div class="ui grid">
+                <div class="six wide column">
+                    <div class="ui large relaxed list">
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Name</div>
+                                {{ campaign.name }}
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">App title</div>
+                                {{ campaign.title }}
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">Logo url</div>
+                                {{ campaign.logo_url }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ten wide column">
+                    <form action="{{ route('MultiCampaignController.showEditCampaign', { id: campaign.id }) }}" method="get">
+                        <button class="ui teal fluid button">Edit campaign</button>
+                    </form>
+                    <form action="{{ route('MultiCampaignController.deleteCampaign', { id: campaign.id }) }}" method="post" style="margin-top: 10px;">
+                        <button class="ui red fluid button">Delete campaign</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection

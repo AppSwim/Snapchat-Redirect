@@ -1,0 +1,32 @@
+@layout('Components.master')
+
+@section('content')
+    @include('Components.header')
+    <div class="ui container" style="margin-top: 10px;">
+        <div class="ui padded segment">
+            <h2 class="ui header">
+                Create new campaign
+            </h2>
+            <form action="{{ route('MultiCampaignController.createCampaign') }}" method="POST" class="ui form">
+                <div class="ui error message"></div>
+                @include('MultiCampaigns.fields')
+                <div class="ui divider"></div>
+                <button type="submit" class="ui green fluid button">Create campaign</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            $('.ui.checkbox').checkbox()
+
+            $('.ui.form').form({
+                fields: {
+                    name: 'minLength[3]',
+                    title:  'minLength[3]',
+                    logo_url: 'url',
+                }
+            })
+        }
+    </script>
+@endsection

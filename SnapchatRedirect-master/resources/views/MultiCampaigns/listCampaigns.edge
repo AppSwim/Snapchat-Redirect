@@ -1,0 +1,36 @@
+@layout('Components.master')
+
+@section('content')
+    @include('Components.header')
+    <div class="ui container" style="margin-top: 10px;">
+        <div class="ui padded segment">
+            <h2 class="ui header">
+                Your campaigns
+            </h2>
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th class="ten wide">Name</th>
+                        <th class="six wide">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @each(campaign in campaigns)
+                      <tr>
+                        <td>{{ campaign.name }}</td>
+                        <td>
+                            <form action="{{ route('MultiCampaignController.showCampaign', { id: campaign.id }) }}" method="get">
+                                <button class="ui teal fluid button">View Campaign</button>
+                            </form>
+                        </td>
+                      </tr>
+                    @endeach
+                </tbody>
+            </table>
+            <form action="{{ route('MultiCampaignController.showNewCampaign') }}" method="get">
+                <button class="ui green fluid button">Create new campaign</button>
+            </form>
+        </div>
+    </div>
+
+@endsection
