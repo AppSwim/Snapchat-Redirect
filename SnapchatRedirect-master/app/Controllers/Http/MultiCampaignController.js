@@ -2,6 +2,7 @@
 
 const User = use('App/Models/User')
 const Campaign = use('App/Models/MultiCampaign')
+const Link = use('App/Models/MultiLink')
 
 class MultiCampaignController {
 
@@ -73,7 +74,7 @@ class MultiCampaignController {
       .first()
 
     view.share({
-      campaign: campaign
+      campaign: campaign.toJSON()
     })
     return view.render('MultiCampaigns.editCampaign')
   }
@@ -91,12 +92,45 @@ class MultiCampaignController {
         id: params.id,
         user_id: user.id
       })
+      .with('links')
       .first()
 
     view.share({
-      campaign: campaign
+      campaign: campaign.toJSON()
     })
     return view.render('MultiCampaigns.showCampaign')
+  }
+
+  async newLink({response, auth, params, view, request}) {
+    const user = await auth.getUser()
+    const campaign = await Campaign.query()
+      .where({
+        id: params.id
+      })
+      .first()
+
+    await campaign.links().create({
+      ...request.only(['short_link', 'default_link']),
+      user_id: user.id
+    })
+
+    response.redirect('/mcampaigns/' + params.id)
+  }
+
+  async deleteLink({response, auth, params, view, request}) {
+    const user = await auth.getUser()
+
+    const link = await Link.findBy({
+      user_id: user.id,
+      campaign_id: params.campaign_id,
+      id: params.link_id
+    })
+
+    if(link) {
+      await link.delete()
+    }
+
+    response.redirect('/mcampaigns/' + params.campaign_id)
   }
 
 }

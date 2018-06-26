@@ -40,6 +40,61 @@
                 </div>
             </div>
         </div>
+        <div class="ui padded segment">
+          <div class="ui header">
+            Links
+          </div>
+
+
+
+          @each(link in campaign.links)
+            <div class="ui grid">
+              <div class="six wide column">
+                <div class="ui large relaxed list">
+                <div class="item">
+                  <div class="content">
+                    <div class="header">Default link</div>
+                    {{ link.default_link }}
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="content">
+                    <div class="header">Short link</div>
+                    {{ link.short_link }}
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="ten wide column">
+                <div class="ui form">
+                  <h3 class="ui sub header">Attachment Link</h3>
+                  <input type="text" value="http://apps.appswim.com/r/{{ link.short_link }}/no-redirect" readonly>
+                </div>
+                <form action="{{ route('MultiCampaignController.deleteLink', { campaign_id: campaign.id, link_id: link.id }) }}" method="post" style="margin-top: 10px;">
+                  <button class="ui red fluid button">Delete link</button>
+                </form>
+              </div>
+            </div>
+
+          <div class="ui divider"></div>
+          @endeach
+
+
+          <form class="ui form" action="{{route('MultiCampaignController.newLink', {id: campaign.id})}}" method="post">
+            <div class="field">
+              <label>Default link</label>
+              <input type="text" name="default_link" placeholder="https://example.com/url">
+            </div>
+
+            <div class="field">
+              <label>Short link</label>
+              <input type="text" name="short_link" placeholder="short">
+            </div>
+
+            <button class="ui teal fluid button">Add link</button>
+          </form>
+
+        </div>
     </div>
 
 @endsection

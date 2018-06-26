@@ -8,9 +8,10 @@ class MultiLinksSchema extends Schema {
       table.increments()
       table.timestamps()
 
+      table.integer('user_id').unsigned().references('id').inTable('users')
       table.integer('campaign_id').unsigned().references('id').inTable('multi_campaigns')
-      table.string('short_link', 255).notNullable()
-      table.string('default_link', 255).notNullable()
+      table.string('short_link', 255).notNullable().unique()
+      table.string('default_link', 255).notNullable().unique()
 
     })
   }

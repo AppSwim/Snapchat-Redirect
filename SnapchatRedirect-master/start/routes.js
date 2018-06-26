@@ -23,7 +23,7 @@ const Redirect = use('App/Models/Redirect')
 Route.get('/', async ({auth, response}) => {
   try {
     await auth.check()
-    response.redirect('/campaigns')
+    response.redirect('/mcampaigns')
   } catch (e) {
     response.redirect('/login')
   }
@@ -66,7 +66,10 @@ Route.get('/mcampaigns/:id/edit', 'MultiCampaignController.showEditCampaign').mi
 Route.post('/mcampaigns/:id/edit', 'MultiCampaignController.updateCampaign').middleware('auth')
 
 Route.post('/mcampaigns/:id/delete', 'MultiCampaignController.deleteCampaign').middleware('auth')
+Route.post('/mcampaigns/:id/link', 'MultiCampaignController.newLink').middleware('auth')
 
-Route.post('/mcampaigns/:id/redirect', 'MultiLinkController.changeCampaignRedirect').middleware('auth')
-Route.post('/mcampaigns/:id/redirect/active', 'MultiLinkController.changeActiveState').middleware('auth')
+Route.post('/mcampaigns/:campaign_id/link/:link_id/delete', 'MultiCampaignController.deleteLink').middleware('auth')
+
+Route.post('/r/:short_link', 'MultiLinkController.redirect').middleware('auth')
 //</editor-fold>
+

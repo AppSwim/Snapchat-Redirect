@@ -10,3 +10,4 @@ tmp
 database/development.sqlite
 
 .idea/
+*.sqlite
