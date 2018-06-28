@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ app_name }}</title>
+    <link rel="shortcut icon" type="image/png" href="{{ logo_url }}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.10/dist/semantic.min.css">
+    {{ css('redirect_style') }}
+    {{ css('redirect_style') }}
+
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script>
+    var isPreview = Cookies.get('app-preview') === 'true'
+
+    if (isPreview) {
+      Cookies.remove('app-preview')
+    } else {
+      window.location = "{{ redirect_url }}"
+    }
+  </script>
+</head>
+<body>
+
+
+<div class="ui container" style="margin-top: 30px;">
+    <div class="ui middle aligned center grid">
+        <div class="column">
+            <div class="landing">
+                <div class="landing-logo">
+                    <img class="landing-logo-image" src="{{ logo_url }}" alt="">
+                </div>
+                <div class="landing-text">
+                {{ app_name }}
+                </div>
+                <div class="landing-store-logo">
+                    <a href="{{ default_redirect_url }}" class="store-badge"><img class="store-logo-ios" src="/app-store-badge.svg" alt=""> </a>
+                    <a href="{{ default_redirect_url }}" class="store-badge-2"><img class="store-logo-android" src="/google-play-badge.png" alt=""> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.10/dist/semantic.min.js"></script>
+</body>
+</html>

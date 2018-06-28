@@ -20,14 +20,14 @@ const User = use('App/Models/User')
 const Campaign = use('App/Models/Campaign')
 const Redirect = use('App/Models/Redirect')
 
-Route.get('/', async ({ auth, response }) => {
-    try {
-        await auth.check()
-        response.redirect('/campaigns')
-    } catch (e) {
-        response.redirect('/login')
-    }
-}) 
+Route.get('/', async ({auth, response}) => {
+  try {
+    await auth.check()
+    response.redirect('/mcampaigns')
+  } catch (e) {
+    response.redirect('/login')
+  }
+})
 
 Route.get('/register', 'AuthenticationController.displayRegister')
 Route.post('/register', 'AuthenticationController.createUser')
@@ -53,3 +53,24 @@ Route.post('/campaigns/:id/delete', 'CampaignController.deleteCampaign').middlew
 
 Route.post('/campaigns/:id/redirect', 'RedirectController.changeCampaignRedirect').middleware('auth')
 Route.post('/campaigns/:id/redirect/active', 'RedirectController.changeActiveState').middleware('auth')
+
+
+//<editor-fold desc="Multi campaigns">
+Route.get('/mcampaigns', 'MultiCampaignController.listCampaigns').middleware('auth')
+Route.post('/mcampaigns', 'MultiCampaignController.createCampaign').middleware('auth')
+Route.get('/mcampaigns/new', 'MultiCampaignController.showNewCampaign').middleware('auth')
+
+Route.get('/mcampaigns/:id', 'MultiCampaignController.showCampaign').middleware('auth')
+
+Route.get('/mcampaigns/:id/edit', 'MultiCampaignController.showEditCampaign').middleware('auth')
+Route.post('/mcampaigns/:id/edit', 'MultiCampaignController.updateCampaign').middleware('auth')
+
+Route.post('/mcampaigns/:id/delete', 'MultiCampaignController.deleteCampaign').middleware('auth')
+Route.post('/mcampaigns/:id/link', 'MultiCampaignController.newLink').middleware('auth')
+
+Route.post('/mcampaigns/:campaign_id/link/:link_id/delete', 'MultiCampaignController.deleteLink').middleware('auth')
+
+Route.get('/r/:short_link', 'MultiLinkController.redirect')
+Route.get('/r/:short_link/preview', 'MultiLinkController.preview')
+//</editor-fold>
+

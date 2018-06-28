@@ -1,0 +1,49 @@
+@layout('Components.master')
+
+@section('content')
+    @include('Components.header')
+    <div class="ui container" style="margin-top: 10px;">
+        <div class="ui padded segment">
+            <h2 class="ui header">
+                Edit campaign
+            </h2>
+            <form action="{{ route('MultiCampaignController.updateCampaign', { id: campaign.id }) }}" method="POST" class="ui form">
+                <div class="ui error message"></div>
+                @include('MultiCampaigns.fields')
+                <button type="submit" class="ui orange fluid button">Save campaign</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            $('.ui.checkbox').checkbox()
+
+            if($("input[type='checkbox']").prop('checked')) {
+                $("input[name='ios_link']").prop('disabled', false)
+                $("input[name='android_link']").prop('disabled', false)
+            }
+
+            $("input[type='checkbox']").change(function() {
+                if (this.checked) {
+                    $("input[name='ios_link']").prop('disabled', false)
+                    $("input[name='android_link']").prop('disabled', false)
+                } else {
+                    $("input[name='ios_link']").prop('disabled', true)
+                    $("input[name='android_link']").prop('disabled', true)
+                }
+            })
+
+            $('.ui.form').form({
+                fields: {
+                    name: 'empty',
+                    default_link: ['empty', 'url'],
+                    ios_link: 'url',
+                    android_link: 'url',
+                    redirect_code: ['empty', 'doesntContain[ ]', 'minLength[4]']
+                }
+            })
+        }
+    </script>
+
+@endsection
