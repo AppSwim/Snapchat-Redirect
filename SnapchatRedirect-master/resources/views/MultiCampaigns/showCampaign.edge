@@ -68,7 +68,7 @@
               <div class="ten wide column">
                 <div class="ui form">
                   <h3 class="ui sub header">Attachment Link</h3>
-                  <input type="text" value="http://apps.appswim.com/r/{{ link.short_link }}/no-redirect" readonly>
+                  <input type="text" value="http://apps.appswim.com/r/{{ link.short_link }}/preview" readonly>
                 </div>
                 <form action="{{ route('MultiCampaignController.deleteLink', { campaign_id: campaign.id, link_id: link.id }) }}" method="post" style="margin-top: 10px;">
                   <button class="ui red fluid button">Delete link</button>
@@ -90,6 +90,7 @@
               <label>Short link</label>
               <input type="text" name="short_link" placeholder="short">
             </div>
+
 
             <button class="ui teal fluid button">Add link</button>
           </form>

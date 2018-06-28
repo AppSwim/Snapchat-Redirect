@@ -9,7 +9,7 @@ class AuthenticationController {
     // { username, password, email }
     async createUser({ request, params, response }) {
         const userData = request.only(['username', 'password', 'email'])
-        const user = await User.create(userData) 
+        const user = await User.create(userData)
         response.redirect('/')
     }
 
@@ -20,12 +20,12 @@ class AuthenticationController {
             await auth.check()
             return "Already logged in"
         } catch (e) {
-            
+
         }
 
         try {
             await auth.remember(true).attempt(email, password)
-            response.redirect('/campaigns')
+            response.redirect('/mcampaigns')
         } catch (e) {
             session.flash({ notif: 'Invalid email and/or password.' })
             response.redirect('/login')
@@ -45,7 +45,7 @@ class AuthenticationController {
     async displayLogin({ request, auth, view, response }) {
         try {
             await auth.check()
-            response.redirect('/campaigns')
+            response.redirect('/mcampaigns')
         } catch (e) {
             return view.render('Authentication.login')
         }
@@ -54,7 +54,7 @@ class AuthenticationController {
     async displayRegister({ request, auth, view, response }) {
         try {
             await auth.check()
-            response.redirect('/campaigns')
+            response.redirect('/mcampaigns')
         } catch (e) {
             return view.render('Authentication.createUser')
         }

@@ -70,6 +70,7 @@ Route.post('/mcampaigns/:id/link', 'MultiCampaignController.newLink').middleware
 
 Route.post('/mcampaigns/:campaign_id/link/:link_id/delete', 'MultiCampaignController.deleteLink').middleware('auth')
 
-Route.post('/r/:short_link', 'MultiLinkController.redirect').middleware('auth')
+Route.get('/r/:short_link', 'MultiLinkController.redirect')
+Route.get('/r/:short_link/preview', 'MultiLinkController.preview')
 //</editor-fold>
 

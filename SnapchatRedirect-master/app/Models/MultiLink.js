@@ -5,7 +5,7 @@ const Model = use('Model')
 class MultiLink extends Model {
 
   campaign() {
-    return this.belongsTo('App/Models/MultiCampaign')
+    return this.belongsTo('App/Models/MultiCampaign', 'campaign_id', 'id')
   }
 }
 
